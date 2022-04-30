@@ -36,6 +36,7 @@
 
 ### UseCase модель процесса:
 ![](UseCase/UseCase%20Model%20for%20gbItArch03.png)
-[pdf](UseCase/Use%20Case%20модель%20процесса%20закупа%20оборудования.pdf) [DrawIO](https://drive.google.com/file/d/10fble6OpYkfgwgVsxxwJbjH2hwy24lnA/view?usp=sharing)
+
+Скачать: [pdf](UseCase/Use%20Case%20модель%20процесса%20закупа%20оборудования.pdf) [DrawIO](https://drive.google.com/file/d/10fble6OpYkfgwgVsxxwJbjH2hwy24lnA/view?usp=sharing)
 
 
