@@ -25,5 +25,16 @@ namespace AndrK.ZavPostav.DomainModel
         /// <param name="entity">Сохраняемая сущность</param>
         /// <returns>Идентификатор сущности</returns>
         Guid? SaveEntity(ref IStorable entity);
+
+        /// <summary>
+        /// Получить список сущностей
+        /// </summary>
+        /// <typeparam name="T">Тип получаемой сущности</typeparam>
+        /// <returns>Список сущностей</returns>
+        /// <remarks>В данном методе необходимо получать
+        /// список сущностей без детализации, детальная информация
+        /// получается методом GetEntity</remarks>
+        IList<T> GetList<T>() where T : IStorable;
+
     }
 }

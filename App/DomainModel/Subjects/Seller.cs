@@ -9,7 +9,7 @@ namespace AndrK.ZavPostav.DomainModel
     /// <summary>
     /// Поставщик
     /// </summary>
-    public class Seller : BaseSubject, ISubject
+    public class Seller : BaseSubject, ISubject, IStorable
     {
     }
 }

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace AndrK.ZavPostav.DomainModel
 {
     /// <summary>
-    /// Заказчик
+    /// Служба закупа
     /// </summary>
-    public class Zakazchik : BaseSubject, ISubject
+    public class ZakupDepartment : BaseSubject, ISubject, IStorable
     {
     }
 }

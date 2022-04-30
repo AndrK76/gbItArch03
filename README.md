@@ -8,3 +8,5 @@
 ### BPMN диаграмма
  [png](/BPMN/BPMN-Temp.png)  [bpmn.studio](https://bpmn.studio/s/M6bdZq3)
  
+### Диаграммы классов
+- [Domain Model](ClassDiagram/DomainModel.pdf) 
