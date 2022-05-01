@@ -9,17 +9,35 @@ namespace AndrK.ZavPostav.DomainModel
     /// <summary>
     /// Заявка на закуп
     /// </summary>
-    public class ZavkaZakup : BaseDocument, IDocument, IObject, IStorable
+    public class ZavkaZakup : BaseDocument, IDocument, IObject, IStorable, ITwoPhaseInited
     {
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         public ZavkaZakup()
         {
-            this.Oborudovanie = new Dictionary<Oborudovanie, decimal>();
         }
-        
+
+
         /// <summary>
         /// Список оборудования
         /// </summary>
-        public IDictionary<Oborudovanie,decimal> Oborudovanie { get; private set; }
+        public IDictionary<Oborudovanie, decimal> Oborudovanie
+
+        {
+            get
+            {
+                if (!isOborudovanieInited && CurrBProcess != null)
+                {
+                    _oborudovanie = CurrBProcess.LazyIniter(this, "Oborudovanie") as IDictionary<Oborudovanie, decimal>;
+                    isOborudovanieInited = true;
+                }
+                return _oborudovanie;
+            }
+        }
+        IDictionary<Oborudovanie, decimal> _oborudovanie = null;
+        bool isOborudovanieInited = false;
+
 
         /// <summary>
         /// Заявка подготовлена
@@ -54,6 +72,11 @@ namespace AndrK.ZavPostav.DomainModel
         /// Заказчик
         /// </summary>
         public Zakazchik Zakazchik { get; set; }
+
+        /// <summary>
+        /// Текущий бизнесс-процесс, необходим для отложенных инициализаций
+        /// </summary>
+        public IBProcess CurrBProcess { get; set; }
 
     }
 }

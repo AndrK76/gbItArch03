@@ -20,6 +20,11 @@ namespace AndrK.ZavPostav.DomainModel
         }
 
         /// <summary>
+        /// Поставщик
+        /// </summary>
+        public Seller Seller { get; set; }
+
+        /// <summary>
         /// Строки заявки
         /// </summary>
         public virtual IList<ZavkaSellerRow> Rows { get; private set; }

@@ -39,15 +39,21 @@ namespace AndrK.ZavPostav.DomainModel
         /// <summary>
         /// Строки счёта
         /// </summary>
-        public virtual IList<ScheetRow> Rows { get; private set; }
+        public virtual IList<ScheetTovarRow> Rows { get; private set; }
 
         /// <summary>
         /// Конструктор
         /// </summary>
         public ScheetTovar()
         {
-            this.Rows = new List<ScheetRow>();
+            this.Rows = new List<ScheetTovarRow>();
         }
+
+        /// <summary>
+        /// Вся номенклатура привязана
+        /// </summary>
+        public bool AllNomSetted => this.Rows.Count(r => r.Oborudovanie == null) == 0;
+
 
         /// <summary>
         /// Счёт исполнен поставщиком

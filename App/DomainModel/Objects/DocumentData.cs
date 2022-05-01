@@ -9,21 +9,37 @@ namespace AndrK.ZavPostav.DomainModel
     /// <summary>
     /// Информация о документе
     /// </summary>
-    public class DocumentData
+    public class DocumentData : BaseDocument, IStorable, IObject, ITwoPhaseInited
     {
-        /// <summary>
-        /// Наименование документа
-        /// </summary>
-        public string Name { get; set; }
 
         /// <summary>
         /// Имя файла
         /// </summary>
         public string FileName { get; set; }
 
+        byte[] _content = null;
+        bool isContentInited = false;
+
         /// <summary>
         /// Данные документа
         /// </summary>
-        public byte[] Content { get; set; }
+        public byte[] Content
+        {
+            get
+            {
+                if (!isContentInited && CurrBProcess != null)
+                {
+                    this._content = CurrBProcess.LazyIniter(this, "Content") as byte[];
+                    isContentInited = true;
+                }
+                return _content;
+            }
+            set => _content = value;
+        }
+
+        /// <summary>
+        /// Текущий бизнесс-процесс, необходим для отложенных инициализаций
+        /// </summary>
+        public IBProcess CurrBProcess { get; set; }
     }
 }

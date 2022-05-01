@@ -20,6 +20,6 @@ namespace AndrK.ZavPostav.DomainModel
         /// Наименование
         /// </summary>
         String Name { get; }
-        
+
     }
 }

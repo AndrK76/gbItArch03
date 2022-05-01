@@ -9,24 +9,42 @@ namespace AndrK.ZavPostav.DomainModel
     /// <summary>
     /// Оборудование
     /// </summary>
-    public class Oborudovanie : BaseObject, IObject, IStorable
+    public class Oborudovanie : BaseObject, IObject, IStorable, ITwoPhaseInited
     {
         /// <summary>
         /// Конструктор
         /// </summary>
         public Oborudovanie() : base()
         {
-            this.Specifications = new List<Specification>();
         }
 
         /// <summary>
         /// Спецификации
         /// </summary>
-        public virtual IList<Specification> Specifications { get; private set; }
+        public virtual IList<Specification> Specifications
+        {
+            get
+            {
+                if (!isSpetificationsInited && CurrBProcess != null)
+                {
+                    this._specifications = CurrBProcess.LazyIniter(this, "Specifications") as IList<Specification>;
+                    isSpetificationsInited = true;
+                }
+                return _specifications;
+            }
+        }
+        bool isSpetificationsInited = false;
+        IList<Specification> _specifications = null;
+
 
         /// <summary>
         /// Учётные данные бухгалтерской системы
         /// </summary>
         public string Nomenklatura { get; set; }
+
+        /// <summary>
+        /// Текущий бизнесс-процесс, необходим для отложенных инициализаций
+        /// </summary>
+        public IBProcess CurrBProcess { get; set; }
     }
 }

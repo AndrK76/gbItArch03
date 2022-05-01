@@ -49,5 +49,8 @@ namespace AndrK.ZavPostav.DomainModel
             return $"Object: Type={MethodBase.GetCurrentMethod().DeclaringType}: Name={Name}";
         }
 
+
+
+
     }
 }

@@ -23,6 +23,7 @@ namespace AndrK.ZavPostav.DomainModel
         public ZavkaSellerRow(ZavkaSeller zavka)
         {
             this.Zavka = zavka;
+            this.KolScheet = 0;
         }
 
         /// <summary>
@@ -38,7 +39,7 @@ namespace AndrK.ZavPostav.DomainModel
         /// <summary>
         /// Строка счёта
         /// </summary>
-        public ScheetRow ScheetRow { get; set; }
+        public ScheetTovarRow ScheetRow { get; set; }
 
         /// <summary>
         /// Количество
@@ -49,6 +50,12 @@ namespace AndrK.ZavPostav.DomainModel
         /// Данная строка сопоставлена со счётом
         /// </summary>
         public bool HaveScheet => this.ScheetRow != null;
+
+        /// <summary>
+        /// Заказанное количество
+        /// </summary>
+        public decimal KolScheet { get; set; }
+       
 
         /// <summary>
         /// Отдано заказчику

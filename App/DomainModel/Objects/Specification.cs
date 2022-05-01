@@ -9,7 +9,7 @@ namespace AndrK.ZavPostav.DomainModel
     /// <summary>
     /// Спецификация оборудования
     /// </summary>
-    public class Specification : BaseDocument, IDocument, IStorable
+    public class Specification : BaseDocument, IDocument, IObject, IStorable, ITwoPhaseInited
     {
         /// <summary>
         /// Конструктор
@@ -28,6 +28,25 @@ namespace AndrK.ZavPostav.DomainModel
         /// <summary>
         /// Данные спецификации
         /// </summary>
-        public DocumentData Content { get; set; }
+        public DocumentData Content
+        {
+            get
+            {
+                if (!isContentInited && CurrBProcess != null)
+                {
+                    this._content = CurrBProcess.LazyIniter(this, "Content") as DocumentData;
+                    isContentInited = true;
+                }
+                return _content;
+            }
+            set { _content = value; }
+        }
+        DocumentData _content;
+        bool isContentInited = false;
+
+        /// <summary>
+        /// Текущий бизнесс-процесс, необходим для отложенных инициализаций
+        /// </summary>
+        public IBProcess CurrBProcess { get; set; }
     }
 }
