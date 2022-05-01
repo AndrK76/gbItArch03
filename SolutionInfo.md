@@ -37,9 +37,13 @@
 2. в одном счёте могут быть позиции из нескольких заявок  
 
 ### UseCase модель процесса:
+[pdf](UseCase/Use%20Case%20модель%20процесса%20закупа%20оборудования.pdf) [Draw.IO](https://drive.google.com/file/d/10fble6OpYkfgwgVsxxwJbjH2hwy24lnA/view?usp=sharing)
 ![](UseCase/UseCase%20Model%20for%20gbItArch03.png)
 
-Скачать: [pdf](UseCase/Use%20Case%20модель%20процесса%20закупа%20оборудования.pdf) [DrawIO](https://drive.google.com/file/d/10fble6OpYkfgwgVsxxwJbjH2hwy24lnA/view?usp=sharing)
+### ER диаграмма
+[pdf](ERDiagram/ER%20диаграмма%20процесса%20закупа%20оборудования.pdf) [Lucid.App](https://lucid.app/documents/view/4fee967d-d0a8-4543-849e-cbb16a168976)
+![](ERDiagram/ERD.png)
+
 
 Тип разрабатываемого приложение - нативное десктопное приложение Windows (будем считать это требованием бизнеса)
 Архитектура клиента - WinForms,  MVC, язык реализации C#

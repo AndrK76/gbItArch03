@@ -50,6 +50,11 @@ namespace AndrK.ZavPostav.DomainModel
         /// </summary>
         public bool HaveScheet => this.ScheetRow != null;
 
+        /// <summary>
+        /// Отдано заказчику
+        /// </summary>
+        public bool IsCompete { get; set; }
+
 
     }
 }

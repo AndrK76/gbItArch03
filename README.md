@@ -13,3 +13,5 @@
 
 ## [Исходные коды](App/)
  
+ 
+ https://lucid.app/documents/view/4fee967d-d0a8-4543-849e-cbb16a168976
