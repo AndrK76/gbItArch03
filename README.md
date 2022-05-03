@@ -9,9 +9,10 @@
  [pdf](ERDiagram/ER%20диаграмма%20процесса%20закупа%20оборудования.pdf) [Lucid.App](https://lucid.app/documents/view/4fee967d-d0a8-4543-849e-cbb16a168976)
  
 ### BPMN диаграмма
- [png](/BPMN/BPMN-Temp.png)  [bpmn.studio](https://bpmn.studio/s/M6bdZq3)
+ [png](/BPMN/BPMN.pdf)  [bpmn.studio](https://bpmn.studio/s/M6bdZq3)
  
 ### Диаграммы классов
 - [Domain Model](ClassDiagram/DomainModel.pdf)
+- [Business Process](ClassDiagram/BusinessLogic.pdf)
 
 ## [Исходные коды](App/)

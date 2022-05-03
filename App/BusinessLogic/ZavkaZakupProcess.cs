@@ -94,5 +94,39 @@ namespace AndrK.ZavPostav.BusinessLogic
             else
                 throw new NotImplementedException($"Для объекта типа {initedObject.GetType().Name} не реализована отложенная инициализация свойства {property} в бизнеспроцессе ZavkaZakupProcess");
         }
+
+        /// <summary>
+        /// Сохраанить заявку
+        /// </summary>
+        /// <param name="zavka">Сохраняемая заявка</param>
+        /// <returns>Id заявки</returns>
+        public Guid SaveZavka(ZavkaZakup zavka)
+        {
+            Repository.SaveEntity<ZavkaZakup>(ref zavka);
+            return zavka.Id;
+        }
+
+        /// <summary>
+        /// Сохранить единицу оборудования
+        /// </summary>
+        /// <param name="obor">Оборудование</param>
+        /// <returns>Id оборудования</returns>
+        public Guid SaveOborudovanie(Oborudovanie obor)
+        {
+            Repository.SaveEntity<Oborudovanie>(ref obor);
+            return obor.Id;
+        }
+
+        /// <summary>
+        /// Сохранить спецификацию
+        /// </summary>
+        /// <param name="spec">Сохраняемая спецификация</param>
+        /// <returns>Id спецификации</returns>
+        public Guid SaveSpecification(Specification spec)
+        {
+            Repository.SaveEntity<Specification>(ref spec);
+            return spec.Id;
+        }
+
     }
 }

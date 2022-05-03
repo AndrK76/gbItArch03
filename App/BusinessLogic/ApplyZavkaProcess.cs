@@ -111,7 +111,6 @@ namespace AndrK.ZavPostav.BusinessLogic
             return ret;
         }
 
-
         /// <summary>
         /// Добавить данные из заявок на закуп в заявку поставщику
         /// </summary>
@@ -186,6 +185,22 @@ namespace AndrK.ZavPostav.BusinessLogic
                 newZavka.Rows.Add(ins);
                 allRows.Add(ins);
             }
+        }
+
+        /// <summary>
+        /// Откатить все данные
+        /// </summary>
+        public void RejectData()
+        {
+            initData();
+        }
+
+        /// <summary>
+        /// Сохранить данные
+        /// </summary>
+        public void SaveData()
+        {
+            thisRepository.SaveDataForApplyZavka(this);
         }
 
     }

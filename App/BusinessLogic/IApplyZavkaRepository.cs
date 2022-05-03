@@ -15,7 +15,13 @@ namespace AndrK.ZavPostav.BusinessLogic
         /// <summary>
         /// Загрузить данные для обработки заявок
         /// </summary>
-        /// <param name="applyProcess"></param>
+        /// <param name="applyProcess">Процесс обработки заявки</param>
         void LoadDataForApplyZavka(ApplyZavkaProcess applyProcess);
+
+        /// <summary>
+        /// Сохранить данные обработанной заявки
+        /// </summary>
+        /// <param name="applyProcess">Процесс обработки заявки</param>
+        void SaveDataForApplyZavka(ApplyZavkaProcess applyProcess);
     }
 }

@@ -3,3 +3,4 @@ d:\Doc\IT_Arch\03. Проектирование прикладных прило�
 d:\Doc\IT_Arch\03. Проектирование прикладных приложений\Практика\gbItArch03\App\DomainModel\obj\Debug\DomainModel.csproj.CoreCompileInputs.cache
 d:\Doc\IT_Arch\03. Проектирование прикладных приложений\Практика\gbItArch03\App\DomainModel\obj\Debug\ZavPostav.DomainModel.dll
 d:\Doc\IT_Arch\03. Проектирование прикладных приложений\Практика\gbItArch03\App\DomainModel\obj\Debug\ZavPostav.DomainModel.pdb
+d:\Doc\IT_Arch\03. Проектирование прикладных приложений\Практика\gbItArch03\App\DomainModel\obj\Debug\DomainModel.csprojAssemblyReference.cache
