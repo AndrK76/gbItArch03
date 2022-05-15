@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -46,5 +47,14 @@ namespace AndrK.ZavPostav.DomainModel
         /// Текущий бизнесс-процесс, необходим для отложенных инициализаций
         /// </summary>
         public IBProcess CurrBProcess { get; set; }
+
+        /// <summary>
+        /// Получить строковое представление
+        /// </summary>
+        /// <returns>Текстовое представление</returns>
+        public override string ToString()
+        {
+            return $"Object: Type={this.GetType().Name}: Name={Name}";
+        }
     }
 }

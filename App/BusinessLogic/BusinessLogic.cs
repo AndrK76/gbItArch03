@@ -34,7 +34,14 @@ namespace AndrK.ZavPostav.BusinessLogic
         /// <returns>Новый бизнесс-процесс</returns>
         T Create<T>(IRepository repository = null) where T : IBProcess
         {
-            return (T)Activator.CreateInstance(typeof(T), repository ?? _defaultRepository);
+            try
+            {
+                return (T)Activator.CreateInstance(typeof(T), repository ?? _defaultRepository);
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException ?? ex;
+            }
         }
         #endregion
 
@@ -43,7 +50,7 @@ namespace AndrK.ZavPostav.BusinessLogic
         /// Инициализировать субъектов
         /// </summary>
         /// <param name="repository">Репозиторий с субъектами</param>
-        public void InitSubjects(IRepository repository)
+        public void InitSubjects(IRepository repository = null)
         {
             subjectRepository = repository ?? _defaultRepository;
             Zakazchiks = subjectRepository.GetList<Zakazchik>();

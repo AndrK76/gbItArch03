@@ -39,7 +39,11 @@ namespace AndrK.ZavPostav.DomainModel
                 }
                 return _content;
             }
-            set { _content = value; }
+            set
+            {
+                _content = value;
+                isContentInited = true;
+            }
         }
         DocumentData _content;
         bool isContentInited = false;
@@ -48,5 +52,15 @@ namespace AndrK.ZavPostav.DomainModel
         /// Текущий бизнесс-процесс, необходим для отложенных инициализаций
         /// </summary>
         public IBProcess CurrBProcess { get; set; }
+
+        /// <summary>
+        /// Получить строковое представление
+        /// </summary>
+        /// <returns>Текстовое представление</returns>
+        public override string ToString()
+        {
+            return $"Object: Type={this.GetType().Name}: Name={Name}";
+        }
+
     }
 }

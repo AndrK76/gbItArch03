@@ -14,12 +14,12 @@ namespace AndrK.ZavPostav.DomainModel
         /// <summary>
         /// Идентификатор
         /// </summary>
-        Guid Id { get; }
+        Guid Id { get; set; }
 
         /// <summary>
         /// Наименование
         /// </summary>
-        String Name { get; }
+        String Name { get; set; }
         
     }
 }

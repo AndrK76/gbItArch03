@@ -14,8 +14,11 @@ namespace AndrK.ZavPostav.DomainModel
         /// <summary>
         /// Конструктор
         /// </summary>
-        public ZavkaZakup()
+        /// <param name="createOborDictionary">Создавать Dictionary для оборудования</param>
+        public ZavkaZakup(bool createOborDictionary = false)
         {
+            if (createOborDictionary)
+                this._oborudovanie = new Dictionary<Oborudovanie, decimal>();
         }
 
 

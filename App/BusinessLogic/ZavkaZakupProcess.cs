@@ -18,7 +18,7 @@ namespace AndrK.ZavPostav.BusinessLogic
         /// Конструктор
         /// </summary>
         /// <param name="repository"></param>
-        internal ZavkaZakupProcess(IRepository repository) : base(repository)
+        public ZavkaZakupProcess(IRepository repository) : base(repository)
         {
             initOborudovanie();
         }
@@ -128,5 +128,18 @@ namespace AndrK.ZavPostav.BusinessLogic
             return spec.Id;
         }
 
+        /// <summary>
+        /// Создать спецификацию оборудования
+        /// </summary>
+        /// <param name="obor">Оборудование</param>
+        /// <returns>Спецификация оборудования</returns>
+        public Specification NewSpec(Oborudovanie obor)
+        {
+            Specification ret = new Specification(obor);
+            ret.CurrBProcess = this;
+            ret.Content = new DocumentData();
+            obor.Specifications.Add(ret);
+            return ret;
+        }
     }
 }

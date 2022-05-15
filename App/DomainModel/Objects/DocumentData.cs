@@ -34,7 +34,11 @@ namespace AndrK.ZavPostav.DomainModel
                 }
                 return _content;
             }
-            set => _content = value;
+            set
+            {
+                _content = value;
+                isContentInited = true;
+            }
         }
 
         /// <summary>

@@ -20,3 +20,6 @@
 
 ### ERD физической модели БД
  [pdf](ERDiagram/ER%20модель%20хранения.pdf)
+ 
+### Диаграммы для SQL Repo
+- [EF Diagram](ERDiagram/ZavRepository.pdf) 

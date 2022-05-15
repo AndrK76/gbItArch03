@@ -56,4 +56,4 @@
 
 [ERD физической модели БД](ERDiagram/ER%20модель%20хранения.pdf)
 
-
+В качестве подхода используем Database First, [полученная модель](ERDiagram/ZavRepository.pdf) 
