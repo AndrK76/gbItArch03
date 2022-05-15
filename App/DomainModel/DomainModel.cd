@@ -134,7 +134,7 @@
       <Property Name="Oborudovanie" />
       <Property Name="Content" />
     </ShowAsAssociation>
-    <Lollipop Orientation="Left" Position="1.662" />
+    <Lollipop Orientation="Left" Position="1.568" />
   </Class>
   <Class Name="AndrK.ZavPostav.DomainModel.ZavkaSeller">
     <Position X="7.25" Y="6" Width="1.5" />
