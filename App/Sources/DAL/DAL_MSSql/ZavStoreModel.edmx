@@ -1,0 +1,862 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище gbItArch03Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DocumentData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="specification_id" Type="uniqueidentifier" />
+          <Property Name="fileName" Type="nvarchar" MaxLength="250" />
+          <Property Name="content" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Oborudovanie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="250" />
+          <Property Name="nomenklatura" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ScheetTovar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="250" />
+          <Property Name="seller_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="num" Type="nvarchar" MaxLength="250" />
+          <Property Name="dat" Type="date" />
+          <Property Name="sum" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="nds" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="isCompeted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScheetTovarRow">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="scheet_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="num" Type="int" Nullable="false" />
+          <Property Name="articul" Type="nvarchar" MaxLength="250" />
+          <Property Name="name" Type="nvarchar" MaxLength="250" />
+          <Property Name="kol" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="price" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="oborudovanie_id" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Seller">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Specification">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
+          <Property Name="oborudovanie_id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zakazchik">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ZakupDepartment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ZavkaSeller">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="250" />
+          <Property Name="seller_id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZavkaSellerRow">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="zavkaSeller_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="zavkaZakup_id" Type="uniqueidentifier" />
+          <Property Name="oborudovanie_id" Type="uniqueidentifier" />
+          <Property Name="scheetRow_id" Type="uniqueidentifier" />
+          <Property Name="kol" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="kolScheet" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="isComplete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZavkaZakup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="250" />
+          <Property Name="isPrepared" Type="bit" Nullable="false" />
+          <Property Name="isAccepted" Type="bit" Nullable="false" />
+          <Property Name="isCompleted" Type="bit" Nullable="false" />
+          <Property Name="zakazchik_id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZavkaZakup_Oborudovanie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="zavkaZakup_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="oborudovanie_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="kol" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DocumentData_Specification">
+          <End Role="Specification" Type="Self.Specification" Multiplicity="0..1" />
+          <End Role="DocumentData" Type="Self.DocumentData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specification">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DocumentData">
+              <PropertyRef Name="specification_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScheetTovar_Seller">
+          <End Role="Seller" Type="Self.Seller" Multiplicity="1" />
+          <End Role="ScheetTovar" Type="Self.ScheetTovar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seller">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ScheetTovar">
+              <PropertyRef Name="seller_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScheetTovarRow_Oborudovanie">
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="0..1" />
+          <End Role="ScheetTovarRow" Type="Self.ScheetTovarRow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oborudovanie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ScheetTovarRow">
+              <PropertyRef Name="oborudovanie_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScheetTovarRow_ScheetTovar">
+          <End Role="ScheetTovar" Type="Self.ScheetTovar" Multiplicity="1" />
+          <End Role="ScheetTovarRow" Type="Self.ScheetTovarRow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScheetTovar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ScheetTovarRow">
+              <PropertyRef Name="scheet_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Specification_Oborudovanie">
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="1" />
+          <End Role="Specification" Type="Self.Specification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oborudovanie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Specification">
+              <PropertyRef Name="oborudovanie_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZavkaSeller_Seller">
+          <End Role="Seller" Type="Self.Seller" Multiplicity="1" />
+          <End Role="ZavkaSeller" Type="Self.ZavkaSeller" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seller">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ZavkaSeller">
+              <PropertyRef Name="seller_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZavkaSellerRow_Oborudovanie">
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="0..1" />
+          <End Role="ZavkaSellerRow" Type="Self.ZavkaSellerRow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oborudovanie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ZavkaSellerRow">
+              <PropertyRef Name="oborudovanie_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZavkaSellerRow_ScheetTovarRow">
+          <End Role="ScheetTovarRow" Type="Self.ScheetTovarRow" Multiplicity="0..1" />
+          <End Role="ZavkaSellerRow" Type="Self.ZavkaSellerRow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScheetTovarRow">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ZavkaSellerRow">
+              <PropertyRef Name="scheetRow_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZavkaSellerRow_ZavkaSeller">
+          <End Role="ZavkaSeller" Type="Self.ZavkaSeller" Multiplicity="1" />
+          <End Role="ZavkaSellerRow" Type="Self.ZavkaSellerRow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZavkaSeller">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ZavkaSellerRow">
+              <PropertyRef Name="zavkaSeller_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZavkaSellerRow_ZavkaZakup">
+          <End Role="ZavkaZakup" Type="Self.ZavkaZakup" Multiplicity="0..1" />
+          <End Role="ZavkaSellerRow" Type="Self.ZavkaSellerRow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZavkaZakup">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ZavkaSellerRow">
+              <PropertyRef Name="zavkaZakup_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZavkaZakup_Oborudovanie_Oborudovanie">
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="1" />
+          <End Role="ZavkaZakup_Oborudovanie" Type="Self.ZavkaZakup_Oborudovanie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oborudovanie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ZavkaZakup_Oborudovanie">
+              <PropertyRef Name="oborudovanie_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZavkaZakup_Oborudovanie_ZavkaZakup">
+          <End Role="ZavkaZakup" Type="Self.ZavkaZakup" Multiplicity="1" />
+          <End Role="ZavkaZakup_Oborudovanie" Type="Self.ZavkaZakup_Oborudovanie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZavkaZakup">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ZavkaZakup_Oborudovanie">
+              <PropertyRef Name="zavkaZakup_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZavkaZakup_Zakazchik">
+          <End Role="Zakazchik" Type="Self.Zakazchik" Multiplicity="1" />
+          <End Role="ZavkaZakup" Type="Self.ZavkaZakup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zakazchik">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ZavkaZakup">
+              <PropertyRef Name="zakazchik_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище gbItArch03ModelContainer">
+          <EntitySet Name="DocumentData" EntityType="Self.DocumentData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Oborudovanie" EntityType="Self.Oborudovanie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScheetTovar" EntityType="Self.ScheetTovar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScheetTovarRow" EntityType="Self.ScheetTovarRow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seller" EntityType="Self.Seller" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Specification" EntityType="Self.Specification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zakazchik" EntityType="Self.Zakazchik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZakupDepartment" EntityType="Self.ZakupDepartment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZavkaSeller" EntityType="Self.ZavkaSeller" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZavkaSellerRow" EntityType="Self.ZavkaSellerRow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZavkaZakup" EntityType="Self.ZavkaZakup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZavkaZakup_Oborudovanie" EntityType="Self.ZavkaZakup_Oborudovanie" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DocumentData_Specification" Association="Self.FK_DocumentData_Specification">
+            <End Role="Specification" EntitySet="Specification" />
+            <End Role="DocumentData" EntitySet="DocumentData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScheetTovar_Seller" Association="Self.FK_ScheetTovar_Seller">
+            <End Role="Seller" EntitySet="Seller" />
+            <End Role="ScheetTovar" EntitySet="ScheetTovar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScheetTovarRow_Oborudovanie" Association="Self.FK_ScheetTovarRow_Oborudovanie">
+            <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+            <End Role="ScheetTovarRow" EntitySet="ScheetTovarRow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScheetTovarRow_ScheetTovar" Association="Self.FK_ScheetTovarRow_ScheetTovar">
+            <End Role="ScheetTovar" EntitySet="ScheetTovar" />
+            <End Role="ScheetTovarRow" EntitySet="ScheetTovarRow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Specification_Oborudovanie" Association="Self.FK_Specification_Oborudovanie">
+            <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+            <End Role="Specification" EntitySet="Specification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZavkaSeller_Seller" Association="Self.FK_ZavkaSeller_Seller">
+            <End Role="Seller" EntitySet="Seller" />
+            <End Role="ZavkaSeller" EntitySet="ZavkaSeller" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZavkaSellerRow_Oborudovanie" Association="Self.FK_ZavkaSellerRow_Oborudovanie">
+            <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+            <End Role="ZavkaSellerRow" EntitySet="ZavkaSellerRow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZavkaSellerRow_ScheetTovarRow" Association="Self.FK_ZavkaSellerRow_ScheetTovarRow">
+            <End Role="ScheetTovarRow" EntitySet="ScheetTovarRow" />
+            <End Role="ZavkaSellerRow" EntitySet="ZavkaSellerRow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZavkaSellerRow_ZavkaSeller" Association="Self.FK_ZavkaSellerRow_ZavkaSeller">
+            <End Role="ZavkaSeller" EntitySet="ZavkaSeller" />
+            <End Role="ZavkaSellerRow" EntitySet="ZavkaSellerRow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZavkaSellerRow_ZavkaZakup" Association="Self.FK_ZavkaSellerRow_ZavkaZakup">
+            <End Role="ZavkaZakup" EntitySet="ZavkaZakup" />
+            <End Role="ZavkaSellerRow" EntitySet="ZavkaSellerRow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZavkaZakup_Oborudovanie_Oborudovanie" Association="Self.FK_ZavkaZakup_Oborudovanie_Oborudovanie">
+            <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+            <End Role="ZavkaZakup_Oborudovanie" EntitySet="ZavkaZakup_Oborudovanie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZavkaZakup_Oborudovanie_ZavkaZakup" Association="Self.FK_ZavkaZakup_Oborudovanie_ZavkaZakup">
+            <End Role="ZavkaZakup" EntitySet="ZavkaZakup" />
+            <End Role="ZavkaZakup_Oborudovanie" EntitySet="ZavkaZakup_Oborudovanie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZavkaZakup_Zakazchik" Association="Self.FK_ZavkaZakup_Zakazchik">
+            <End Role="Zakazchik" EntitySet="Zakazchik" />
+            <End Role="ZavkaZakup" EntitySet="ZavkaZakup" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="gbItArch03Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DocumentData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="specification_id" Type="Guid" />
+          <Property Name="fileName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="content" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Specification" Relationship="Self.FK_DocumentData_Specification" FromRole="DocumentData" ToRole="Specification" />
+        </EntityType>
+        <EntityType Name="Oborudovanie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="nomenklatura" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ScheetTovarRow" Relationship="Self.FK_ScheetTovarRow_Oborudovanie" FromRole="Oborudovanie" ToRole="ScheetTovarRow" />
+          <NavigationProperty Name="Specification" Relationship="Self.FK_Specification_Oborudovanie" FromRole="Oborudovanie" ToRole="Specification" />
+          <NavigationProperty Name="ZavkaSellerRow" Relationship="Self.FK_ZavkaSellerRow_Oborudovanie" FromRole="Oborudovanie" ToRole="ZavkaSellerRow" />
+          <NavigationProperty Name="ZavkaZakup_Oborudovanie" Relationship="Self.FK_ZavkaZakup_Oborudovanie_Oborudovanie" FromRole="Oborudovanie" ToRole="ZavkaZakup_Oborudovanie" />
+        </EntityType>
+        <EntityType Name="ScheetTovar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="seller_id" Type="Guid" Nullable="false" />
+          <Property Name="num" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="dat" Type="DateTime" Precision="0" />
+          <Property Name="sum" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="nds" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="isCompeted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Seller" Relationship="Self.FK_ScheetTovar_Seller" FromRole="ScheetTovar" ToRole="Seller" />
+          <NavigationProperty Name="ScheetTovarRow" Relationship="Self.FK_ScheetTovarRow_ScheetTovar" FromRole="ScheetTovar" ToRole="ScheetTovarRow" />
+        </EntityType>
+        <EntityType Name="ScheetTovarRow">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="scheet_id" Type="Guid" Nullable="false" />
+          <Property Name="num" Type="Int32" Nullable="false" />
+          <Property Name="articul" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="kol" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="price" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="oborudovanie_id" Type="Guid" />
+          <NavigationProperty Name="Oborudovanie" Relationship="Self.FK_ScheetTovarRow_Oborudovanie" FromRole="ScheetTovarRow" ToRole="Oborudovanie" />
+          <NavigationProperty Name="ScheetTovar" Relationship="Self.FK_ScheetTovarRow_ScheetTovar" FromRole="ScheetTovarRow" ToRole="ScheetTovar" />
+          <NavigationProperty Name="ZavkaSellerRow" Relationship="Self.FK_ZavkaSellerRow_ScheetTovarRow" FromRole="ScheetTovarRow" ToRole="ZavkaSellerRow" />
+        </EntityType>
+        <EntityType Name="Seller">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ScheetTovar" Relationship="Self.FK_ScheetTovar_Seller" FromRole="Seller" ToRole="ScheetTovar" />
+          <NavigationProperty Name="ZavkaSeller" Relationship="Self.FK_ZavkaSeller_Seller" FromRole="Seller" ToRole="ZavkaSeller" />
+        </EntityType>
+        <EntityType Name="Specification">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="oborudovanie_id" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="DocumentData" Relationship="Self.FK_DocumentData_Specification" FromRole="Specification" ToRole="DocumentData" />
+          <NavigationProperty Name="Oborudovanie" Relationship="Self.FK_Specification_Oborudovanie" FromRole="Specification" ToRole="Oborudovanie" />
+        </EntityType>
+        <EntityType Name="Zakazchik">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ZavkaZakup" Relationship="Self.FK_ZavkaZakup_Zakazchik" FromRole="Zakazchik" ToRole="ZavkaZakup" />
+        </EntityType>
+        <EntityType Name="ZakupDepartment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ZavkaSeller">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="seller_id" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Seller" Relationship="Self.FK_ZavkaSeller_Seller" FromRole="ZavkaSeller" ToRole="Seller" />
+          <NavigationProperty Name="ZavkaSellerRow" Relationship="gbItArch03Model.FK_ZavkaSellerRow_ZavkaSeller" FromRole="ZavkaSeller" ToRole="ZavkaSellerRow" />
+        </EntityType>
+        <EntityType Name="ZavkaSellerRow">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="zavkaSeller_id" Type="Guid" Nullable="false" />
+          <Property Name="zavkaZakup_id" Type="Guid" />
+          <Property Name="oborudovanie_id" Type="Guid" />
+          <Property Name="scheetRow_id" Type="Guid" />
+          <Property Name="kol" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="kolScheet" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="isComplete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Oborudovanie" Relationship="Self.FK_ZavkaSellerRow_Oborudovanie" FromRole="ZavkaSellerRow" ToRole="Oborudovanie" />
+          <NavigationProperty Name="ScheetTovarRow" Relationship="Self.FK_ZavkaSellerRow_ScheetTovarRow" FromRole="ZavkaSellerRow" ToRole="ScheetTovarRow" />
+          <NavigationProperty Name="ZavkaZakup" Relationship="Self.FK_ZavkaSellerRow_ZavkaZakup" FromRole="ZavkaSellerRow" ToRole="ZavkaZakup" />
+          <NavigationProperty Name="ZavkaSeller" Relationship="gbItArch03Model.FK_ZavkaSellerRow_ZavkaSeller" FromRole="ZavkaSellerRow" ToRole="ZavkaSeller" />
+        </EntityType>
+        <EntityType Name="ZavkaZakup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="isPrepared" Type="Boolean" Nullable="false" />
+          <Property Name="isAccepted" Type="Boolean" Nullable="false" />
+          <Property Name="isCompleted" Type="Boolean" Nullable="false" />
+          <Property Name="zakazchik_id" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Zakazchik" Relationship="Self.FK_ZavkaZakup_Zakazchik" FromRole="ZavkaZakup" ToRole="Zakazchik" />
+          <NavigationProperty Name="ZavkaSellerRow" Relationship="Self.FK_ZavkaSellerRow_ZavkaZakup" FromRole="ZavkaZakup" ToRole="ZavkaSellerRow" />
+          <NavigationProperty Name="ZavkaZakup_Oborudovanie" Relationship="Self.FK_ZavkaZakup_Oborudovanie_ZavkaZakup" FromRole="ZavkaZakup" ToRole="ZavkaZakup_Oborudovanie" />
+        </EntityType>
+        <EntityType Name="ZavkaZakup_Oborudovanie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="zavkaZakup_id" Type="Guid" Nullable="false" />
+          <Property Name="oborudovanie_id" Type="Guid" Nullable="false" />
+          <Property Name="kol" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Oborudovanie" Relationship="Self.FK_ZavkaZakup_Oborudovanie_Oborudovanie" FromRole="ZavkaZakup_Oborudovanie" ToRole="Oborudovanie" />
+          <NavigationProperty Name="ZavkaZakup" Relationship="Self.FK_ZavkaZakup_Oborudovanie_ZavkaZakup" FromRole="ZavkaZakup_Oborudovanie" ToRole="ZavkaZakup" />
+        </EntityType>
+        <Association Name="FK_DocumentData_Specification">
+          <End Role="Specification" Type="Self.Specification" Multiplicity="0..1" />
+          <End Role="DocumentData" Type="Self.DocumentData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specification">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DocumentData">
+              <PropertyRef Name="specification_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScheetTovarRow_Oborudovanie">
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="0..1" />
+          <End Role="ScheetTovarRow" Type="Self.ScheetTovarRow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oborudovanie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ScheetTovarRow">
+              <PropertyRef Name="oborudovanie_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Specification_Oborudovanie">
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="1" />
+          <End Role="Specification" Type="Self.Specification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oborudovanie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Specification">
+              <PropertyRef Name="oborudovanie_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZavkaSellerRow_Oborudovanie">
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="0..1" />
+          <End Role="ZavkaSellerRow" Type="Self.ZavkaSellerRow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oborudovanie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ZavkaSellerRow">
+              <PropertyRef Name="oborudovanie_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZavkaZakup_Oborudovanie_Oborudovanie">
+          <End Role="Oborudovanie" Type="Self.Oborudovanie" Multiplicity="1" />
+          <End Role="ZavkaZakup_Oborudovanie" Type="Self.ZavkaZakup_Oborudovanie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oborudovanie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ZavkaZakup_Oborudovanie">
+              <PropertyRef Name="oborudovanie_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScheetTovar_Seller">
+          <End Role="Seller" Type="Self.Seller" Multiplicity="1" />
+          <End Role="ScheetTovar" Type="Self.ScheetTovar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seller">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ScheetTovar">
+              <PropertyRef Name="seller_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScheetTovarRow_ScheetTovar">
+          <End Role="ScheetTovar" Type="Self.ScheetTovar" Multiplicity="1" />
+          <End Role="ScheetTovarRow" Type="Self.ScheetTovarRow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScheetTovar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ScheetTovarRow">
+              <PropertyRef Name="scheet_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZavkaSellerRow_ScheetTovarRow">
+          <End Role="ScheetTovarRow" Type="Self.ScheetTovarRow" Multiplicity="0..1" />
+          <End Role="ZavkaSellerRow" Type="Self.ZavkaSellerRow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScheetTovarRow">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ZavkaSellerRow">
+              <PropertyRef Name="scheetRow_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZavkaSeller_Seller">
+          <End Role="Seller" Type="Self.Seller" Multiplicity="1" />
+          <End Role="ZavkaSeller" Type="Self.ZavkaSeller" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seller">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ZavkaSeller">
+              <PropertyRef Name="seller_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZavkaZakup_Zakazchik">
+          <End Role="Zakazchik" Type="Self.Zakazchik" Multiplicity="1" />
+          <End Role="ZavkaZakup" Type="Self.ZavkaZakup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zakazchik">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ZavkaZakup">
+              <PropertyRef Name="zakazchik_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZavkaSellerRow_ZavkaZakup">
+          <End Role="ZavkaZakup" Type="Self.ZavkaZakup" Multiplicity="0..1" />
+          <End Role="ZavkaSellerRow" Type="Self.ZavkaSellerRow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZavkaZakup">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ZavkaSellerRow">
+              <PropertyRef Name="zavkaZakup_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZavkaZakup_Oborudovanie_ZavkaZakup">
+          <End Role="ZavkaZakup" Type="Self.ZavkaZakup" Multiplicity="1" />
+          <End Role="ZavkaZakup_Oborudovanie" Type="Self.ZavkaZakup_Oborudovanie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZavkaZakup">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ZavkaZakup_Oborudovanie">
+              <PropertyRef Name="zavkaZakup_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="gbItArch03Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DocumentData" EntityType="Self.DocumentData" />
+          <EntitySet Name="Oborudovanie" EntityType="Self.Oborudovanie" />
+          <EntitySet Name="ScheetTovar" EntityType="Self.ScheetTovar" />
+          <EntitySet Name="ScheetTovarRow" EntityType="Self.ScheetTovarRow" />
+          <EntitySet Name="Seller" EntityType="Self.Seller" />
+          <EntitySet Name="Specification" EntityType="Self.Specification" />
+          <EntitySet Name="Zakazchik" EntityType="Self.Zakazchik" />
+          <EntitySet Name="ZakupDepartment" EntityType="Self.ZakupDepartment" />
+          <EntitySet Name="ZavkaSeller" EntityType="Self.ZavkaSeller" />
+          <EntitySet Name="ZavkaSellerRow" EntityType="Self.ZavkaSellerRow" />
+          <EntitySet Name="ZavkaZakup" EntityType="Self.ZavkaZakup" />
+          <EntitySet Name="ZavkaZakup_Oborudovanie" EntityType="Self.ZavkaZakup_Oborudovanie" />
+          <AssociationSet Name="FK_DocumentData_Specification" Association="Self.FK_DocumentData_Specification">
+            <End Role="Specification" EntitySet="Specification" />
+            <End Role="DocumentData" EntitySet="DocumentData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScheetTovarRow_Oborudovanie" Association="Self.FK_ScheetTovarRow_Oborudovanie">
+            <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+            <End Role="ScheetTovarRow" EntitySet="ScheetTovarRow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Specification_Oborudovanie" Association="Self.FK_Specification_Oborudovanie">
+            <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+            <End Role="Specification" EntitySet="Specification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZavkaSellerRow_Oborudovanie" Association="Self.FK_ZavkaSellerRow_Oborudovanie">
+            <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+            <End Role="ZavkaSellerRow" EntitySet="ZavkaSellerRow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZavkaZakup_Oborudovanie_Oborudovanie" Association="Self.FK_ZavkaZakup_Oborudovanie_Oborudovanie">
+            <End Role="Oborudovanie" EntitySet="Oborudovanie" />
+            <End Role="ZavkaZakup_Oborudovanie" EntitySet="ZavkaZakup_Oborudovanie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScheetTovar_Seller" Association="Self.FK_ScheetTovar_Seller">
+            <End Role="Seller" EntitySet="Seller" />
+            <End Role="ScheetTovar" EntitySet="ScheetTovar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScheetTovarRow_ScheetTovar" Association="Self.FK_ScheetTovarRow_ScheetTovar">
+            <End Role="ScheetTovar" EntitySet="ScheetTovar" />
+            <End Role="ScheetTovarRow" EntitySet="ScheetTovarRow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZavkaSellerRow_ScheetTovarRow" Association="Self.FK_ZavkaSellerRow_ScheetTovarRow">
+            <End Role="ScheetTovarRow" EntitySet="ScheetTovarRow" />
+            <End Role="ZavkaSellerRow" EntitySet="ZavkaSellerRow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZavkaSeller_Seller" Association="Self.FK_ZavkaSeller_Seller">
+            <End Role="Seller" EntitySet="Seller" />
+            <End Role="ZavkaSeller" EntitySet="ZavkaSeller" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZavkaZakup_Zakazchik" Association="Self.FK_ZavkaZakup_Zakazchik">
+            <End Role="Zakazchik" EntitySet="Zakazchik" />
+            <End Role="ZavkaZakup" EntitySet="ZavkaZakup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZavkaSellerRow_ZavkaZakup" Association="Self.FK_ZavkaSellerRow_ZavkaZakup">
+            <End Role="ZavkaZakup" EntitySet="ZavkaZakup" />
+            <End Role="ZavkaSellerRow" EntitySet="ZavkaSellerRow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZavkaZakup_Oborudovanie_ZavkaZakup" Association="Self.FK_ZavkaZakup_Oborudovanie_ZavkaZakup">
+            <End Role="ZavkaZakup" EntitySet="ZavkaZakup" />
+            <End Role="ZavkaZakup_Oborudovanie" EntitySet="ZavkaZakup_Oborudovanie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZavkaSellerRow_ZavkaSeller" Association="gbItArch03Model.FK_ZavkaSellerRow_ZavkaSeller">
+            <End Role="ZavkaSeller" EntitySet="ZavkaSeller" />
+            <End Role="ZavkaSellerRow" EntitySet="ZavkaSellerRow" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_ZavkaSellerRow_ZavkaSeller">
+          <End Type="gbItArch03Model.ZavkaSeller" Role="ZavkaSeller" Multiplicity="1" />
+          <End Type="gbItArch03Model.ZavkaSellerRow" Role="ZavkaSellerRow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZavkaSeller">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ZavkaSellerRow">
+              <PropertyRef Name="zavkaSeller_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище gbItArch03ModelContainer" CdmEntityContainer="gbItArch03Entities">
+          <EntitySetMapping Name="DocumentData">
+            <EntityTypeMapping TypeName="gbItArch03Model.DocumentData">
+              <MappingFragment StoreEntitySet="DocumentData">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="specification_id" ColumnName="specification_id" />
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="content" ColumnName="content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Oborudovanie">
+            <EntityTypeMapping TypeName="gbItArch03Model.Oborudovanie">
+              <MappingFragment StoreEntitySet="Oborudovanie">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="nomenklatura" ColumnName="nomenklatura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScheetTovar">
+            <EntityTypeMapping TypeName="gbItArch03Model.ScheetTovar">
+              <MappingFragment StoreEntitySet="ScheetTovar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="seller_id" ColumnName="seller_id" />
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="dat" ColumnName="dat" />
+                <ScalarProperty Name="sum" ColumnName="sum" />
+                <ScalarProperty Name="nds" ColumnName="nds" />
+                <ScalarProperty Name="isCompeted" ColumnName="isCompeted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScheetTovarRow">
+            <EntityTypeMapping TypeName="gbItArch03Model.ScheetTovarRow">
+              <MappingFragment StoreEntitySet="ScheetTovarRow">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="scheet_id" ColumnName="scheet_id" />
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="articul" ColumnName="articul" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="kol" ColumnName="kol" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="oborudovanie_id" ColumnName="oborudovanie_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seller">
+            <EntityTypeMapping TypeName="gbItArch03Model.Seller">
+              <MappingFragment StoreEntitySet="Seller">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Specification">
+            <EntityTypeMapping TypeName="gbItArch03Model.Specification">
+              <MappingFragment StoreEntitySet="Specification">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="oborudovanie_id" ColumnName="oborudovanie_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zakazchik">
+            <EntityTypeMapping TypeName="gbItArch03Model.Zakazchik">
+              <MappingFragment StoreEntitySet="Zakazchik">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZakupDepartment">
+            <EntityTypeMapping TypeName="gbItArch03Model.ZakupDepartment">
+              <MappingFragment StoreEntitySet="ZakupDepartment">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZavkaSeller">
+            <EntityTypeMapping TypeName="gbItArch03Model.ZavkaSeller">
+              <MappingFragment StoreEntitySet="ZavkaSeller">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="seller_id" ColumnName="seller_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZavkaSellerRow">
+            <EntityTypeMapping TypeName="gbItArch03Model.ZavkaSellerRow">
+              <MappingFragment StoreEntitySet="ZavkaSellerRow">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="zavkaSeller_id" ColumnName="zavkaSeller_id" />
+                <ScalarProperty Name="zavkaZakup_id" ColumnName="zavkaZakup_id" />
+                <ScalarProperty Name="oborudovanie_id" ColumnName="oborudovanie_id" />
+                <ScalarProperty Name="scheetRow_id" ColumnName="scheetRow_id" />
+                <ScalarProperty Name="kol" ColumnName="kol" />
+                <ScalarProperty Name="kolScheet" ColumnName="kolScheet" />
+                <ScalarProperty Name="isComplete" ColumnName="isComplete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZavkaZakup">
+            <EntityTypeMapping TypeName="gbItArch03Model.ZavkaZakup">
+              <MappingFragment StoreEntitySet="ZavkaZakup">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="isPrepared" ColumnName="isPrepared" />
+                <ScalarProperty Name="isAccepted" ColumnName="isAccepted" />
+                <ScalarProperty Name="isCompleted" ColumnName="isCompleted" />
+                <ScalarProperty Name="zakazchik_id" ColumnName="zakazchik_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZavkaZakup_Oborudovanie">
+            <EntityTypeMapping TypeName="gbItArch03Model.ZavkaZakup_Oborudovanie">
+              <MappingFragment StoreEntitySet="ZavkaZakup_Oborudovanie">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="zavkaZakup_id" ColumnName="zavkaZakup_id" />
+                <ScalarProperty Name="oborudovanie_id" ColumnName="oborudovanie_id" />
+                <ScalarProperty Name="kol" ColumnName="kol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
