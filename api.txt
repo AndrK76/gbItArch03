@@ -1,0 +1,27 @@
+﻿title: API работы с заказами
+baseUri: http://localhost:64258/api/
+protocols: HTTP
+mediaType: application/json
+
+Types:
+    RestResult: 
+        displayName: Результат выполнения
+        type: object
+        properties:
+            Status:
+                type: int
+                description: Код 
+            Message:
+                type: string
+                description: Текст сообщения
+
+
+
+End Points
+/subjects:
+  description: Работа со справочником Товары (в 1С номенклатура)
+  type: collection-subject
+  get:
+     :  
+  /{id}:
+    type: subject

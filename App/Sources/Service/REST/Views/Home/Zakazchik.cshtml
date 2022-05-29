@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Заказчики";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div id="body" class="form-horizontal">
+    <h3>Заказчики</h3>
+    <ul id="zakazchiks" class="form-group"></ul>
+    <form id="saveZakazchikForm" method="post" class="form-group">
+        <h3>Создать</h3>
+        <p>
+            <input type="hidden" name="Id" value="@Guid.Empty" />
+            <label for="zakazchikName">Название:</label>
+            <input type="text" name="Name" />
+        </p>
+        <input type="button" id="saveZakazchik" value="Save" />
+    </form>
+    <div id="tst"></div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $.getJSON('/api/Subjects/zakazchik', function (zakazchiksJsonPayload) {
+                $(zakazchiksJsonPayload).each(function (i, item) {
+                    $('#zakazchiks').append('<li>' + item.Name + '</li>');
+                });
+            });
+        });
+
+        $('#saveZakazchik').click(function () {
+            $.post("api/Subjects/add",
+                $("#saveZakazchikForm").serialize(),
+                function (value) { $('#zakazchiks').append('<li>' + value.Name + '</li>'); },
+                "json"
+            );
+        });
+
+    </script>
+}

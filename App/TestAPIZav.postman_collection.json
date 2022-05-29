@@ -1,0 +1,177 @@
+{
+	"info": {
+		"_postman_id": "76b37c2f-64f2-49a7-b499-f42aba2ac7e4",
+		"name": "TestAPIZav",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:64258/api/Subjects/zakazchik",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:64258/api/Subjects/zakazchik",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "64258",
+					"path": [
+						"api",
+						"Subjects",
+						"zakazchik"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:64258/api/Subjects/seller",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:64258/api/Subjects/seller",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "64258",
+					"path": [
+						"api",
+						"Subjects",
+						"seller"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:64258/api/Subjects/zakazchik?id={ac8475cd-e05b-4bdf-81a8-013b8d52078b}",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:64258/api/Subjects/zakazchik?id={ac8475cd-e05b-4bdf-81a8-013b8d52078b}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "64258",
+					"path": [
+						"api",
+						"Subjects",
+						"zakazchik"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{ac8475cd-e05b-4bdf-81a8-013b8d52078b}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:64258/api/Subjects/add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"SubjectType\" : \"zakazchik\",\r\n    \"Subject\" :  {\"Name\": \"Заказчик 99999\"}\r\n}\r\n\r\n\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:64258/api/Subjects/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "64258",
+					"path": [
+						"api",
+						"Subjects",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:64258/api/Subjects/add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"SubjectType\" : \"seller\",\r\n    \"Subject\" :  {\"Name\": \"ООО \\\"Рога и Копыта 2\\\"\"}\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:64258/api/Subjects/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "64258",
+					"path": [
+						"api",
+						"Subjects",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:64258/api/Subjects/edit",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"SubjectType\" : \"zakazchik\",\r\n    \"Subject\" :  {\"Name\": \"Заказчик 2-99999\",\"Id\": \"b7807932-f313-4688-98af-9a7e7dbc28da\"}\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:64258/api/Subjects/edit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "64258",
+					"path": [
+						"api",
+						"Subjects",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -139,7 +139,14 @@ namespace AndrK.ZavPostav.DAL_MSSql
             throw new NotImplementedException();
         }
 
+        public int RemoveEntity(ref IStorable entity)
+        {
+            throw new NotImplementedException();
+        }
 
-
+        public int RemoveEntity<T>(ref T entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

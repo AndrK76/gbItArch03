@@ -42,6 +42,21 @@ namespace AndrK.ZavPostav.DomainModel
         /// <returns>Id сущности</returns>
         Guid? SaveEntity<T>(ref T entity);
 
+        /// <summary>
+        /// Удалить сущность
+        /// </summary>
+        /// <param name="entity">Сохраняемая сущность</param>
+        /// <returns>Удалено записей</returns>
+        int RemoveEntity(ref IStorable entity);
+
+        /// <summary>
+        /// Удалить сущность
+        /// </summary>
+        /// <typeparam name="T">Тип сущности</typeparam>
+        /// <param name="entity">Сохраняемая сущность</param>
+        /// <returns>Удалено записей</returns>
+        int RemoveEntity<T>(ref T entity);
+
 
         /// <summary>
         /// Получить список сущностей

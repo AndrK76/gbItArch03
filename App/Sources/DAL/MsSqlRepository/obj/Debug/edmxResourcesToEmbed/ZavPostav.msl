@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище gbItArch03ModelContainer" CdmEntityContainer="gbItArch03Entities">
+    <EntitySetMapping Name="DocumentDatas">
+      <EntityTypeMapping TypeName="gbItArch03Model.DocumentData">
+        <MappingFragment StoreEntitySet="DocumentData">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="specification_id" ColumnName="specification_id" />
+          <ScalarProperty Name="fileName" ColumnName="fileName" />
+          <ScalarProperty Name="content" ColumnName="content" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Oborudovanies">
+      <EntityTypeMapping TypeName="gbItArch03Model.Oborudovanie">
+        <MappingFragment StoreEntitySet="Oborudovanie">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="nomenklatura" ColumnName="nomenklatura" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScheetTovars">
+      <EntityTypeMapping TypeName="gbItArch03Model.ScheetTovar">
+        <MappingFragment StoreEntitySet="ScheetTovar">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="seller_id" ColumnName="seller_id" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="dat" ColumnName="dat" />
+          <ScalarProperty Name="sum" ColumnName="sum" />
+          <ScalarProperty Name="nds" ColumnName="nds" />
+          <ScalarProperty Name="isCompeted" ColumnName="isCompeted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScheetTovarRows">
+      <EntityTypeMapping TypeName="gbItArch03Model.ScheetTovarRow">
+        <MappingFragment StoreEntitySet="ScheetTovarRow">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="scheet_id" ColumnName="scheet_id" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="articul" ColumnName="articul" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="kol" ColumnName="kol" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="oborudovanie_id" ColumnName="oborudovanie_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SELLERS">
+      <EntityTypeMapping TypeName="gbItArch03Model.SELLER">
+        <MappingFragment StoreEntitySet="Seller">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Specifications">
+      <EntityTypeMapping TypeName="gbItArch03Model.Specification">
+        <MappingFragment StoreEntitySet="Specification">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="oborudovanie_id" ColumnName="oborudovanie_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ZAKAZCHIKS">
+      <EntityTypeMapping TypeName="gbItArch03Model.ZAKAZCHIK">
+        <MappingFragment StoreEntitySet="Zakazchik">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ZakupDepartments">
+      <EntityTypeMapping TypeName="gbItArch03Model.ZakupDepartment">
+        <MappingFragment StoreEntitySet="ZakupDepartment">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ZavkaSellers">
+      <EntityTypeMapping TypeName="gbItArch03Model.ZavkaSeller">
+        <MappingFragment StoreEntitySet="ZavkaSeller">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="seller_id" ColumnName="seller_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ZavkaSellerRows">
+      <EntityTypeMapping TypeName="gbItArch03Model.ZavkaSellerRow">
+        <MappingFragment StoreEntitySet="ZavkaSellerRow">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="zavkaSeller_id" ColumnName="zavkaSeller_id" />
+          <ScalarProperty Name="zavkaZakup_id" ColumnName="zavkaZakup_id" />
+          <ScalarProperty Name="oborudovanie_id" ColumnName="oborudovanie_id" />
+          <ScalarProperty Name="scheetRow_id" ColumnName="scheetRow_id" />
+          <ScalarProperty Name="kol" ColumnName="kol" />
+          <ScalarProperty Name="kolScheet" ColumnName="kolScheet" />
+          <ScalarProperty Name="isComplete" ColumnName="isComplete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ZavkaZakups">
+      <EntityTypeMapping TypeName="gbItArch03Model.ZavkaZakup">
+        <MappingFragment StoreEntitySet="ZavkaZakup">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="isPrepared" ColumnName="isPrepared" />
+          <ScalarProperty Name="isAccepted" ColumnName="isAccepted" />
+          <ScalarProperty Name="isCompleted" ColumnName="isCompleted" />
+          <ScalarProperty Name="zakazchik_id" ColumnName="zakazchik_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ZavkaZakup_Oborudovanie">
+      <EntityTypeMapping TypeName="gbItArch03Model.ZavkaZakup_Oborudovanie">
+        <MappingFragment StoreEntitySet="ZavkaZakup_Oborudovanie">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="zavkaZakup_id" ColumnName="zavkaZakup_id" />
+          <ScalarProperty Name="oborudovanie_id" ColumnName="oborudovanie_id" />
+          <ScalarProperty Name="kol" ColumnName="kol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

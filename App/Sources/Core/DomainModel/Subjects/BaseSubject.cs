@@ -10,7 +10,7 @@ namespace AndrK.ZavPostav.DomainModel
     /// <summary>
     /// Базовый класс для субъектов
     /// </summary>
-    public abstract class BaseSubject : ISubject, IStorable
+    public class BaseSubject : ISubject, IStorable
     {
         /// <summary>
         /// Конструктор по умолчанию

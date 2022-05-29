@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="40e917f8e95941c0bc9489e90d4b5b8b" Name="Diagram1">
+        <EntityTypeShape EntityType="gbItArch03Model.DocumentData" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="gbItArch03Model.Oborudovanie" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="gbItArch03Model.ScheetTovar" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gbItArch03Model.ScheetTovarRow" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="gbItArch03Model.SELLER" Width="1.5" PointX="1.5" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="gbItArch03Model.Specification" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="gbItArch03Model.ZAKAZCHIK" Width="1.5" PointX="3.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gbItArch03Model.ZakupDepartment" Width="1.5" PointX="2.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="gbItArch03Model.ZavkaSeller" Width="1.5" PointX="6" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="gbItArch03Model.ZavkaSellerRow" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="gbItArch03Model.ZavkaZakup" Width="1.5" PointX="6" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="gbItArch03Model.ZavkaZakup_Oborudovanie" Width="1.5" PointX="6" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="gbItArch03Model.FK_DocumentData_Specification" ManuallyRouted="false" />
+        <AssociationConnector Association="gbItArch03Model.FK_ScheetTovarRow_Oborudovanie" ManuallyRouted="false" />
+        <AssociationConnector Association="gbItArch03Model.FK_Specification_Oborudovanie" ManuallyRouted="false" />
+        <AssociationConnector Association="gbItArch03Model.FK_ZavkaSellerRow_Oborudovanie" ManuallyRouted="false" />
+        <AssociationConnector Association="gbItArch03Model.FK_ZavkaZakup_Oborudovanie_Oborudovanie" ManuallyRouted="false" />
+        <AssociationConnector Association="gbItArch03Model.FK_ScheetTovar_Seller" ManuallyRouted="false" />
+        <AssociationConnector Association="gbItArch03Model.FK_ScheetTovarRow_ScheetTovar" ManuallyRouted="false" />
+        <AssociationConnector Association="gbItArch03Model.FK_ZavkaSellerRow_ScheetTovarRow" ManuallyRouted="false" />
+        <AssociationConnector Association="gbItArch03Model.FK_ZavkaSeller_Seller" ManuallyRouted="false" />
+        <AssociationConnector Association="gbItArch03Model.FK_ZavkaZakup_Zakazchik" ManuallyRouted="false" />
+        <AssociationConnector Association="gbItArch03Model.FK_ZavkaSellerRow_ZavkaSeller" ManuallyRouted="false" />
+        <AssociationConnector Association="gbItArch03Model.FK_ZavkaSellerRow_ZavkaZakup" ManuallyRouted="false" />
+        <AssociationConnector Association="gbItArch03Model.FK_ZavkaZakup_Oborudovanie_ZavkaZakup" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

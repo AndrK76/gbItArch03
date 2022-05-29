@@ -11,5 +11,9 @@ namespace AndrK.ZavPostav.DomainModel
     /// </summary>
     public class Seller : BaseSubject, ISubject, IStorable
     {
+        public override string ToString()
+        {
+            return $"Продавец: Id={Id}\tНаименование {Name}";
+        }
     }
 }
